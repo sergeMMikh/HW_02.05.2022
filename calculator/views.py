@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse
+from pprint import pprint
 
 DATA = {
     'omlet': {
@@ -21,21 +22,19 @@ DATA = {
 
 
 def home_view(request):
-    template_name = 'calculator/home.html'
-    # впишите правильные адреса страниц, используя
-    # функцию `reverse`
     pages = {
         'Главная страница': reverse('home'),
-        # 'Показать текущее время': reverse('time'),
-        # 'Показать содержимое рабочей директории': reverse('workdir')
+        'omlet': reverse('omlet'),
+        'pasta': reverse('pasta'),
+        'buter': reverse('buter'),
     }
 
-    # context и параметры render менять не нужно
-    # подбробнее о них мы поговорим на следующих лекциях
     context = {
         'pages': pages
     }
-    return render(request, template_name, context)
+
+    return render(request, 'calculator/home.html', context)
+
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
@@ -46,3 +45,61 @@ def home_view(request):
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def recipes(request):
+    name = request.GET.get('name', 'omlet')
+    qtt = int(request.GET.get('servings', 1))
+
+    # context = {
+    #   'recipe': {
+    #     'ингредиент1': количество1,
+    #     'ингредиент2': количество2,
+    #   }
+
+    context = {}
+    tmp_dict = {}
+
+    for key, val in DATA[name].items():
+        tmp_dict.setdefault(key, val * qtt)
+    context.setdefault('recipe', tmp_dict)
+
+    return render(request, 'calculator/index.html', context)
+
+
+def omlet(request):
+    qtt = int(request.GET.get('servings', 1))
+
+    context = {}
+    tmp_dict = {}
+
+    for key, val in DATA['omlet'].items():
+        tmp_dict.setdefault(key, val * qtt)
+    context.setdefault('recipe', tmp_dict)
+
+    return render(request, 'calculator/index.html', context)
+
+
+def pasta(request):
+    qtt = int(request.GET.get('q', 1))
+
+    context = {}
+    tmp_dict = {}
+
+    for key, val in DATA[pasta].items():
+        tmp_dict.setdefault(key, val * qtt)
+    context.setdefault('recipe', tmp_dict)
+
+    return render(request, 'calculator/index.html', context)
+
+
+def buter(request):
+    qtt = int(request.GET.get('servings', 1))
+
+    context = {}
+    tmp_dict = {}
+
+    for key, val in DATA[buter].items():
+        tmp_dict.setdefault(key, val * qtt)
+    context.setdefault('recipe', tmp_dict)
+
+    return render(request, 'calculator/index.html', context)
