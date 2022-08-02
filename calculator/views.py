@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 
 DATA = {
     'omlet': {
@@ -18,6 +18,24 @@ DATA = {
     },
     # можете добавить свои рецепты ;)
 }
+
+
+def home_view(request):
+    template_name = 'calculator/home.html'
+    # впишите правильные адреса страниц, используя
+    # функцию `reverse`
+    pages = {
+        'Главная страница': reverse('home'),
+        # 'Показать текущее время': reverse('time'),
+        # 'Показать содержимое рабочей директории': reverse('workdir')
+    }
+
+    # context и параметры render менять не нужно
+    # подбробнее о них мы поговорим на следующих лекциях
+    context = {
+        'pages': pages
+    }
+    return render(request, template_name, context)
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
