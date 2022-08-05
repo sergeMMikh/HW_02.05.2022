@@ -23,7 +23,7 @@ DATA = {
 
 def home_view(request):
     pages = {
-        'Главная страница': reverse('home'),
+        # 'Главная страница': reverse('home'),
         'omlet': reverse('omlet'),
         'pasta': reverse('pasta'),
         'buter': reverse('buter'),
@@ -80,12 +80,12 @@ def omlet(request):
 
 
 def pasta(request):
-    qtt = int(request.GET.get('q', 1))
+    qtt = int(request.GET.get('servings', 1))
 
     context = {}
     tmp_dict = {}
 
-    for key, val in DATA[pasta].items():
+    for key, val in DATA['pasta'].items():
         tmp_dict.setdefault(key, val * qtt)
     context.setdefault('recipe', tmp_dict)
 
@@ -98,7 +98,7 @@ def buter(request):
     context = {}
     tmp_dict = {}
 
-    for key, val in DATA[buter].items():
+    for key, val in DATA['buter'].items():
         tmp_dict.setdefault(key, val * qtt)
     context.setdefault('recipe', tmp_dict)
 

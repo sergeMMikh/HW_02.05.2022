@@ -18,8 +18,8 @@ from django.urls import path
 from calculator.views import home_view, omlet, pasta, buter
 
 urlpatterns = [
-    path('', home_view, name='home'),
+    path('', home_view, name='index'),
     path('omlet', omlet, name='omlet'),
-    path('omlet', pasta, name='pasta'),
-    path('omlet', buter, name='buter')
+    path('pasta', pasta, name='pasta'),
+    path('buter', buter, name='buter')
 ]
