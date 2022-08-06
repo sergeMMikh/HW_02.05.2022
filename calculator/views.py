@@ -46,8 +46,8 @@ def home_view(request):
 #   }
 # }
 
-def recipes(request):
-    name = request.GET.get('name', 'omlet')
+def recipes(request, recipe):
+    # name = request.GET.get('name', 'omlet')
     qtt = int(request.GET.get('servings', 1))
 
     # context = {
