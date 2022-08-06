@@ -5,10 +5,13 @@
     <title>Домашняя страница</title>
 </head>
 <body>
-    <h1>Выберите рецепт</h1>
+    <h1>Выберите рецепт из мне известных.</h1>
+
     {% for title, url in pages.items %}
         <a href="{{ url }}">{{ title }}</a>
         <br>
     {% endfor %}
+    <h2>Или посомтрите, что нового в книге через "/"</h2>
+    <a1>Пример: /pasta?servings=3 </a1>
 </body>
 </html>

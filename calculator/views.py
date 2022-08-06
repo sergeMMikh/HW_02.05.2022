@@ -59,7 +59,7 @@ def recipes(request, recipe):
     context = {}
     tmp_dict = {}
 
-    for key, val in DATA[name].items():
+    for key, val in DATA[recipe].items():
         tmp_dict.setdefault(key, val * qtt)
     context.setdefault('recipe', tmp_dict)
 
